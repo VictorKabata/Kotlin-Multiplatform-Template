@@ -1,7 +1,7 @@
 object AndroidSdk {
     const val appName = "KMP Template"
 
-    const val applicationId = "com.company.kmp_template"
+    const val applicationId = "com.company.kmp_template.android"
 
     const val buildToolVersion = "30.0.3"
 
