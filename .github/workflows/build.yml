@@ -19,7 +19,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: Make gradlew executable
+      - name: Make gradle executable
         run: chmod +x ./gradlew
 
       - name: Build with gradle
