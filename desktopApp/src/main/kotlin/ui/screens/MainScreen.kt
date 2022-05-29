@@ -24,8 +24,8 @@ fun MainScreen(applicationScope: ApplicationScope) {
         title = "KMP Template",
         state = rememberWindowState(
             position = WindowPosition.Aligned(Alignment.Center),
-            width = 400.dp, // Dp.Unspecified,
-            height = 400.dp, // Dp.Unspecified,
+            width = 400.dp, // or Dp.Unspecified,
+            height = 400.dp, // or Dp.Unspecified,
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
