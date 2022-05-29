@@ -35,6 +35,7 @@ A [kotlin multiplatform](https://kotlinlang.org/docs/multiplatform.html) project
    medium article.
 2. GitHub README
    on [creating compose multiplatform desktop application](https://github.com/JetBrains/compose-jb/tree/master/tutorials/Getting_Started)
+3. [GitHub Repository Template](https://github.com/wangerekaharun/GradleBuildPlugins) showcasing how to setup a gradle plugins.
 
 ## Work In Progress
 
