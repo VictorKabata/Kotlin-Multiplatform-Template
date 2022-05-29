@@ -1,6 +1,4 @@
-package com.vickikbt.kmptemplate
-
-import platform.UIKit.UIDevice
+package com.vickikbt.kmptemplate.domain.utils
 
 actual class Platform actual constructor() {
     actual val platform: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion

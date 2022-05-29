@@ -3,7 +3,7 @@ package com.vickikbt.kmptemplate.android.ui.activities
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.vickikbt.kmptemplate.Greeting
+import com.vickikbt.kmptemplate.presentation.utils.Greeting
 import com.vickikbt.kmptemplate.android.R
 
 fun greet(): String {
