@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm")
-    id("org.jetbrains.compose") version Versions.composeDesktop
+    kotlin(Plugins.jvm)
+    id(Plugins.compose) version Versions.composeDesktop
 }
 
 repositories {
@@ -15,7 +15,7 @@ dependencies {
 }
 
 compose.desktop {
-    /*application {
-        mainClass = "NotflixDesktopKt"
-    }*/
+    application {
+        mainClass = "DesktopApplicationKt"
+    }
 }
