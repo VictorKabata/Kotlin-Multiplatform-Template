@@ -12,12 +12,11 @@ buildscript {
 }
 
 plugins {
-    id("org.jlleitschuh.gradle.ktlint") version Versions.ktLint
-// ToDo: Add Detekt
+    id(Plugins.ktLint) version Versions.ktLint
+    id(Plugins.detekt) version (Versions.detekt)
 }
 
 allprojects {
-
     repositories {
         google()
         mavenCentral()
@@ -38,6 +37,12 @@ subprojects {
             exclude("**/generated/**")
             include("**/kotlin/**")
         }
+    }
+
+    apply(plugin = Plugins.detekt)
+    detekt {
+        parallel = true
+        config = files("${project.rootDir}/config/detekt/detekt.yml")
     }
 }
 
