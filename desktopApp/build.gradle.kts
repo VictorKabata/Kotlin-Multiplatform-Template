@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    // implementation(project(BuildModules.shared))
+    implementation(project(BuildModules.shared))
 
     implementation(compose.desktop.currentOs)
 }

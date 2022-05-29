@@ -11,9 +11,13 @@ import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
+import com.vickikbt.kmptemplate.presentation.utils.Greeting
+import koin
 
 @Composable
 fun MainScreen(applicationScope: ApplicationScope) {
+
+    val greeting = koin.get<Greeting>()
 
     Window(
         onCloseRequest = { applicationScope.exitApplication() },
@@ -25,7 +29,7 @@ fun MainScreen(applicationScope: ApplicationScope) {
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Text(modifier = Modifier.align(Alignment.Center), text = "Hello, Windows 11!")
+            Text(modifier = Modifier.align(Alignment.Center), text = greeting.greet())
         }
     }
 }
