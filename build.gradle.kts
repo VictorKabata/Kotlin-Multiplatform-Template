@@ -14,6 +14,7 @@ buildscript {
 plugins {
     id(Plugins.ktLint) version Versions.ktLint
     id(Plugins.detekt) version (Versions.detekt)
+    id(Plugins.gradleVersionUpdates) version(Versions.gradleVersionUpdate)
 }
 
 allprojects {
