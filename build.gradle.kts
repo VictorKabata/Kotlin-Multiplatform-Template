@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-// ToDo: Add Ktlint
+    id("org.jlleitschuh.gradle.ktlint") version Versions.ktLint
 // ToDo: Add Detekt
 }
 
@@ -23,6 +23,21 @@ allprojects {
         mavenCentral()
         maven("https://jitpack.io")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+}
+
+subprojects {
+    apply(plugin = Plugins.ktLint)
+    ktlint {
+        debug.set(true)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        outputColorName.set("RED")
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
     }
 }
 
