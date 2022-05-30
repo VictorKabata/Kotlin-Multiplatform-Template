@@ -2,12 +2,12 @@ name: Check Dependencies Updates
 
 on:
   schedule:
-    - cron: 35 12 30 5 *
+    - cron: 40 1 * * *
 
 jobs:
 
   build:
-    name: 🔨 Build
+    name: 🔭 Check for dependencies update
     runs-on: ubuntu-latest
     steps:
 
