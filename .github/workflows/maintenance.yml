@@ -24,3 +24,5 @@ jobs:
 
       - name: Build with gradle
         run: ./gradlew dependencyUpdates --stacktrace
+
+        # Send email job
