@@ -23,9 +23,9 @@ android {
 dependencies {
     implementation(project(BuildModules.shared))
 
-    implementation("com.google.android.material:material:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(AndroidDependencies.material)
+    implementation(AndroidDependencies.appCompat)
+    implementation(AndroidDependencies.constraintLayout)
 
     implementation(AndroidDependencies.koinAndroid)
 }
