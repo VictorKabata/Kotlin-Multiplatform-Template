@@ -26,7 +26,7 @@ A [kotlin multiplatform](https://kotlinlang.org/docs/multiplatform.html) project
 - [KtLint](https://github.com/JLLeitschuh/ktlint-gradle) - This plugin creates convenient tasks in your Gradle project that run ktlint checks or do code auto format.
 - [Detekt](https://github.com/detekt/detekt) - A static code analysis tool for the Kotlin programming language.
 - [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) - This plugin provides a task to determine which dependencies have updates.
-
+- [Official SQLDelight KMP Documentation](https://cashapp.github.io/sqldelight/multiplatform_sqlite/) on getting started with [SQLDelight](https://github.com/cashapp/sqldelight).
 ## Sample Projects
 
 // ToDo
