@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin(Plugins.multiplatform)
     id(Plugins.androidLibrary)
+    id(Plugins.sqlDelight) version Versions.sqlDelight
 }
 
 android {
@@ -17,8 +18,6 @@ android {
 kotlin {
     android()
 
-    jvm()
-
     val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         when {
             System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
@@ -27,9 +26,27 @@ kotlin {
         }
     iosTarget("iOS") {}
 
+    jvm()
+
     sourceSets {
         sourceSets["commonMain"].dependencies {
             api(MultiplatformDependencies.koinCore)
+
+            implementation(MultiplatformDependencies.kotlinxCoroutines)
+            implementation(MultiplatformDependencies.kotlinxSerialization)
+            implementation(MultiplatformDependencies.kotlinxDateTime)
+
+            implementation(MultiplatformDependencies.ktorCore)
+            implementation(MultiplatformDependencies.ktorSerialization)
+            implementation(MultiplatformDependencies.ktorLogging)
+
+            implementation(MultiplatformDependencies.sqlDelight)
+            implementation(MultiplatformDependencies.sqlDelightCoroutine)
+
+            implementation(MultiplatformDependencies.multiplatformSettings)
+            implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
+
+            api(MultiplatformDependencies.napier)
         }
 
         sourceSets["commonTest"].dependencies {
@@ -37,21 +54,33 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
+            implementation(MultiplatformDependencies.ktorAndroid)
+            implementation(MultiplatformDependencies.sqlDelightAndroid)
         }
 
         sourceSets["androidTest"].dependencies {
         }
 
         sourceSets["iOSMain"].dependencies {
+            implementation(MultiplatformDependencies.ktoriOS)
+            implementation(MultiplatformDependencies.sqlDelightNative)
         }
 
         sourceSets["iOSTest"].dependencies {
         }
 
         sourceSets["jvmMain"].dependencies {
+            api(MultiplatformDependencies.ktorJvm)
+            implementation(MultiplatformDependencies.sqlDelightJVM)
         }
 
         sourceSets["jvmTest"].dependencies {
         }
+    }
+}
+
+sqldelight {
+    database(name = "AppDatabase") {
+        packageName = "com.vickikbt.kmptemplate.data.cache.sqldelight"
     }
 }
