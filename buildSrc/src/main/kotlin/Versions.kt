@@ -1,6 +1,6 @@
 object Versions {
     // Project Level Plugins
-    const val kotlin = "1.6.21"
+    const val kotlin = "1.6.20"
     const val gradle = "7.2.0"
     const val ktLint = "10.3.0"
     const val detekt = "1.19.0"
@@ -9,6 +9,7 @@ object Versions {
     // KMM Dependencies Version
     const val koin = "3.2.0"
     const val kotlinxSerialization = "1.2.2"
+    const val kotlinSerialization = "1.6.10"
     const val kotlinxCoroutines = "1.6.0-native-mt"
     const val kotlinxDateTime = "0.3.2"
     const val napier = "2.4.0"
@@ -34,4 +35,17 @@ object Versions {
     const val navigation = "2.4.0-alpha02"
     const val lifecycle = "2.3.1"
     const val coil = "1.4.0"
+
+    // Test Libraries
+    const val jUnit = "4.13.2"
+    const val truth = "1.1.3"
+    const val coroutinesTest = "1.5.0"
+    const val robolectric = "4.5.1"
+    const val mockWebServer = "4.7.2"
+    const val jUnitKtx = "1.1.2"
+    const val espresso = "3.3.0"
+    const val testCore = "1.3.0"
+    const val archTestCore = "2.1.0"
+    const val testRules = "1.3.0"
+    const val testRunner = "1.3.0"
 }

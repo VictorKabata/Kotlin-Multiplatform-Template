@@ -3,7 +3,9 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin(Plugins.multiplatform)
     id(Plugins.androidLibrary)
+    kotlin(Plugins.kotlinXSerialization) version Versions.kotlinSerialization
     id(Plugins.sqlDelight) version Versions.sqlDelight
+    id(Plugins.nativeCoroutines)
 }
 
 android {
@@ -82,5 +84,6 @@ kotlin {
 sqldelight {
     database(name = "AppDatabase") {
         packageName = "com.vickikbt.kmptemplate.data.cache.sqldelight"
+        sourceFolders = listOf("kotlin")
     }
 }
