@@ -46,9 +46,9 @@ dependencies {
     /**
      * Firebase Dependencies
      *
-    implementation(platform(AndroidDependencies.firebaseBOM))
-    implementation(AndroidDependencies.firebaseAnalytics)
-    implementation(AndroidDependencies.firebaseCrashlytics)*/
+     implementation(platform(AndroidDependencies.firebaseBOM))
+     implementation(AndroidDependencies.firebaseAnalytics)
+     implementation(AndroidDependencies.firebaseCrashlytics)*/
 
     implementation(AndroidDependencies.material)
 
@@ -63,12 +63,12 @@ dependencies {
     /**
      * Accompanist Dependencies
      *
-    implementation(AndroidDependencies.accompanistPager)
-    implementation(AndroidDependencies.accompanistInsets)
-    implementation(AndroidDependencies.accompanistAnimation)
-    implementation(AndroidDependencies.accompanistSystemUIController)
-    implementation(AndroidDependencies.accompanistMaterialPlaceHolder)
-    implementation(AndroidDependencies.accompanistPagerIndicator)*/
+     implementation(AndroidDependencies.accompanistPager)
+     implementation(AndroidDependencies.accompanistInsets)
+     implementation(AndroidDependencies.accompanistAnimation)
+     implementation(AndroidDependencies.accompanistSystemUIController)
+     implementation(AndroidDependencies.accompanistMaterialPlaceHolder)
+     implementation(AndroidDependencies.accompanistPagerIndicator)*/
 
     implementation(AndroidDependencies.lifecycleLiveData)
     implementation(AndroidDependencies.lifecycleRuntime)
@@ -83,7 +83,7 @@ dependencies {
     /**
      * Coil-Image Loader
      *
-    implementation(AndroidDependencies.coil)*/
+     implementation(AndroidDependencies.coil)*/
 
     testImplementation(AndroidDependencies.jUnit)
     testImplementation(AndroidDependencies.googleTruth)

@@ -23,5 +23,4 @@ class MainViewModel constructor(private val greetingRepository: Greeting) : Koin
     private fun greetings() = viewModelScope.launch {
         _greeting.value = greetingRepository.greet()
     }
-
 }
