@@ -64,4 +64,17 @@ object AndroidDependencies {
 
     // Coil-Image Loader
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
+
+    // Test Libs
+    const val jUnit = "junit:junit:${Versions.jUnit}"
+    const val googleTruth = "com.google.truth:truth:${Versions.truth}"
+    const val coroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val jUnitKtx = "androidx.test.ext:junit-ktx:${Versions.jUnitKtx}"
+    const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val testCore = "androidx.test:core-ktx:${Versions.testCore}"
+    const val archTestCore = "androidx.arch.core:core-testing:${Versions.archTestCore}"
+    const val testRules = "androidx.test:rules:${Versions.testRules}"
+    const val testRunner = "androidx.test:runner:${Versions.testRunner}"
 }

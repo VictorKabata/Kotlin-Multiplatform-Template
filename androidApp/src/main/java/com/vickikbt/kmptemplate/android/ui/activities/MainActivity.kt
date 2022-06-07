@@ -1,21 +1,35 @@
 package com.vickikbt.kmptemplate.android.ui.activities
 
 import android.os.Bundle
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import com.vickikbt.kmptemplate.android.R
-import com.vickikbt.kmptemplate.presentation.utils.Greeting
-import org.koin.android.ext.android.inject
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
+import com.vickikbt.kmptemplate.android.ui.composable_screens.MainScreen
 
-class MainActivity : AppCompatActivity() {
-
-    private val greeting: Greeting by inject()
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
+@ExperimentalMaterialApi
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greeting.greet()
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    MainScreen()
+                }
+            }
+        }
     }
+
 }

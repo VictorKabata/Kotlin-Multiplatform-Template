@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Plugins.kotlin)
         classpath(Plugins.gradle)
+        classpath(Plugins.kmpNativeCoroutines)
     }
 }
 
