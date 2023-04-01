@@ -7,6 +7,12 @@ dependencies {
     implementation(project(":shared"))
 
     implementation(compose.desktop.currentOs)
+
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.ktor.mock)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinX.coroutines.test)
 }
 
 compose.desktop {
