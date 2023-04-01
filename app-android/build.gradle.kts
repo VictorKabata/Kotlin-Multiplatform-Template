@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.company.kmp_template.android"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = compileSdk
         versionCode = 1
         versionName = "1.0.0"
     }
