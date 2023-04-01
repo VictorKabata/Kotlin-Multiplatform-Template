@@ -1,10 +1,4 @@
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
-    }
-
     dependencies {
         classpath(Plugins.kotlin)
         classpath(Plugins.gradle)
@@ -13,9 +7,9 @@ buildscript {
 }
 
 plugins {
-    id(Plugins.ktLint) version Versions.ktLint
-    id(Plugins.detekt) version (Versions.detekt)
-    id(Plugins.gradleVersionUpdates) version(Versions.gradleVersionUpdate)
+    alias(libs.plugins.ktLint)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.gradleVersionUpdates)
 }
 
 allprojects {
