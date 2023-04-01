@@ -8,6 +8,6 @@ pluginManagement {
 }
 
 rootProject.name = "KMP_Template"
-include(":androidApp")
+include(":app-android")
 include(":desktopApp")
 include(":shared")
