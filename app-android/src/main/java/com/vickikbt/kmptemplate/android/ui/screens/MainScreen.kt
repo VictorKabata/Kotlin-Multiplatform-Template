@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.android.ui.composable_screens
+package com.vickikbt.kmptemplate.android.ui.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +13,6 @@ import org.koin.androidx.compose.get
 
 @Composable
 fun MainScreen(viewModel: MainViewModel = get()) {
-
     val greeting = viewModel.greeting.collectAsState().value
 
     Box(modifier = Modifier.fillMaxSize()) {

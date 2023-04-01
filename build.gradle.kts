@@ -1,34 +1,24 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
-    }
-
-    dependencies {
-        classpath(Plugins.kotlin)
-        classpath(Plugins.gradle)
-        classpath(Plugins.kmpNativeCoroutines)
-    }
-}
-
 plugins {
-    id(Plugins.ktLint) version Versions.ktLint
-    id(Plugins.detekt) version (Versions.detekt)
-    id(Plugins.gradleVersionUpdates) version(Versions.gradleVersionUpdate)
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.kotlin) apply false
+    alias(libs.plugins.multiplatform) apply false
+    alias(libs.plugins.jvm) apply false
+    // alias(libs.plugins.nativeCocoapod) apply false
+
+    alias(libs.plugins.ktLint)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.gradleVersionUpdates)
 }
 
 allprojects {
     repositories {
         google()
         mavenCentral()
-        maven("https://jitpack.io")
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven(url = "https://jitpack.io")
     }
-}
 
-subprojects {
-    apply(plugin = Plugins.ktLint)
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     ktlint {
         debug.set(true)
         verbose.set(true)
@@ -36,12 +26,15 @@ subprojects {
         outputToConsole.set(true)
         outputColorName.set("RED")
         filter {
-            exclude("**/generated/**")
+            enableExperimentalRules.set(true)
+            exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
             include("**/kotlin/**")
         }
     }
+}
 
-    apply(plugin = Plugins.detekt)
+subprojects {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         parallel = true
         config = files("${project.rootDir}/config/detekt/detekt.yml")
@@ -49,7 +42,8 @@ subprojects {
 
     tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
         checkForGradleUpdate = true
-        outputDir = "build/dependencyUpdates"
+        outputFormatter = "html"
+        outputDir = "build/reports/dependencyUpdates"
         reportfileName = "report"
     }
 }

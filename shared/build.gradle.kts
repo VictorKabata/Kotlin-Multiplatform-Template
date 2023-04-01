@@ -1,19 +1,19 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin(Plugins.multiplatform)
-    id(Plugins.androidLibrary)
-    kotlin(Plugins.kotlinXSerialization) version Versions.kotlinSerialization
-    id(Plugins.sqlDelight) version Versions.sqlDelight
-    id(Plugins.nativeCoroutines)
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlinX.serialization.plugin)
+    alias(libs.plugins.sqlDelight.plugin)
+    // alias(libs.plugins.nativeCocoapod)
 }
 
 android {
-    compileSdk = AndroidSdk.compileSdkVersion
+    compileSdk = 33
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = AndroidSdk.minSdkVersion
-        targetSdk = AndroidSdk.targetSdkVersion
+        minSdk = 21
+        targetSdk = compileSdk
     }
 }
 
@@ -32,48 +32,47 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            api(MultiplatformDependencies.koinCore)
+            api(libs.koin.core)
 
-            implementation(MultiplatformDependencies.kotlinxCoroutines)
-            implementation(MultiplatformDependencies.kotlinxSerialization)
-            implementation(MultiplatformDependencies.kotlinxDateTime)
+            api(libs.ktor.core)
+            api(libs.ktor.cio)
+            implementation(libs.ktor.contentNegotiation)
+            implementation(libs.ktor.json)
+            implementation(libs.ktor.logging)
 
-            implementation(MultiplatformDependencies.ktorCore)
-            implementation(MultiplatformDependencies.ktorSerialization)
-            implementation(MultiplatformDependencies.ktorLogging)
+            implementation(libs.kotlinX.serializationJson)
 
-            implementation(MultiplatformDependencies.sqlDelight)
-            implementation(MultiplatformDependencies.sqlDelightCoroutine)
+            implementation(libs.sqlDelight.runtime)
+            implementation(libs.sqlDelight.coroutine)
 
-            implementation(MultiplatformDependencies.multiplatformSettings)
-            implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
+            implementation(libs.multiplatformSettings.noArg)
+            implementation(libs.multiplatformSettings.coroutines)
 
-            api(MultiplatformDependencies.napier)
+            api(libs.napier)
+
+            implementation(libs.kotlinX.dateTime)
         }
 
         sourceSets["commonTest"].dependencies {
-            implementation(kotlin("test"))
+            implementation(libs.kotlin.test)
         }
 
         sourceSets["androidMain"].dependencies {
-            implementation(MultiplatformDependencies.ktorAndroid)
-            implementation(MultiplatformDependencies.sqlDelightAndroid)
+            implementation(libs.sqlDelight.android)
         }
 
         sourceSets["androidTest"].dependencies {
         }
 
         sourceSets["iOSMain"].dependencies {
-            implementation(MultiplatformDependencies.ktoriOS)
-            implementation(MultiplatformDependencies.sqlDelightNative)
+            implementation(libs.sqlDelight.native)
         }
 
         sourceSets["iOSTest"].dependencies {
         }
 
         sourceSets["jvmMain"].dependencies {
-            api(MultiplatformDependencies.ktorJvm)
-            implementation(MultiplatformDependencies.sqlDelightJVM)
+            implementation(libs.sqlDelight.jvm)
         }
 
         sourceSets["jvmTest"].dependencies {

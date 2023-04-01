@@ -17,7 +17,6 @@ import koin
 
 @Composable
 fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = koin.get()) {
-
     val greeting = viewModel.greeting.collectAsState().value
 
     Window(
