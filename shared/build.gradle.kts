@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization.plugin)
-    // alias(libs.plugins.sqlDelight.plugin)
+    alias(libs.plugins.sqlDelight.plugin)
     // alias(libs.plugins.nativeCocoapod)
 }
 
