@@ -5,7 +5,6 @@ plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinXSerialization) version Versions.kotlinSerialization
     id(Plugins.sqlDelight) version Versions.sqlDelight
-    id(Plugins.nativeCoroutines)
 }
 
 android {

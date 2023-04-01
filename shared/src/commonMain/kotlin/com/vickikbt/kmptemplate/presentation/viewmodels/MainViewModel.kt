@@ -1,6 +1,5 @@
 package com.vickikbt.kmptemplate.presentation.viewmodels
 
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.vickikbt.kmptemplate.presentation.utils.Greeting
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +9,7 @@ import org.koin.core.component.KoinComponent
 
 class MainViewModel constructor(private val greetingRepository: Greeting) : KoinComponent {
 
-    @NativeCoroutineScope
+    // @NativeCoroutineScope
     private val viewModelScope = CoroutineScope(Dispatchers.Default)
 
     private val _greeting = MutableStateFlow<String?>(null)
