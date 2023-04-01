@@ -1,27 +1,18 @@
-buildscript {
-    dependencies {
-        classpath(Plugins.kotlin)
-        classpath(Plugins.gradle)
-    }
-}
-
 plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.kotlin) apply false
+    alias(libs.plugins.multiplatform) apply false
+    alias(libs.plugins.jvm) apply false
+    // alias(libs.plugins.nativeCocoapod) apply false
+
     alias(libs.plugins.ktLint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionUpdates)
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io")
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    }
-}
-
 subprojects {
-    apply(plugin = Plugins.ktLint)
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     ktlint {
         debug.set(true)
         verbose.set(true)
@@ -34,7 +25,7 @@ subprojects {
         }
     }
 
-    apply(plugin = Plugins.detekt)
+    apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         parallel = true
         config = files("${project.rootDir}/config/detekt/detekt.yml")

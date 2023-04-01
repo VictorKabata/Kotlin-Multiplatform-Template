@@ -1,6 +1,6 @@
 plugins {
-    id(Plugins.androidApplication)
-    kotlin(Plugins.android)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.kotlin)
 }
 
 android {
@@ -33,62 +33,41 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
 }
 
 dependencies {
-    api(project(BuildModules.shared))
+    api(project(":shared"))
 
-    implementation(AndroidDependencies.kotlin)
-    implementation(AndroidDependencies.androidCore)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidX.core)
 
-    /**
-     * Firebase Dependencies
-     *
-     implementation(platform(AndroidDependencies.firebaseBOM))
-     implementation(AndroidDependencies.firebaseAnalytics)
-     implementation(AndroidDependencies.firebaseCrashlytics)*/
+    implementation(libs.material)
 
-    implementation(AndroidDependencies.material)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material)
+    implementation(libs.compose.tooling)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.util)
+    implementation(libs.compose.activity)
 
-    implementation(AndroidDependencies.composeUI)
-    implementation(AndroidDependencies.composeMaterial)
-    implementation(AndroidDependencies.composeTooling)
-    implementation(AndroidDependencies.composeRuntime)
-    implementation(AndroidDependencies.composeUtil)
-    implementation(AndroidDependencies.composeConstraintLayout)
-    implementation(AndroidDependencies.composeActivity)
-
-    /**
-     * Accompanist Dependencies
-     *
-     implementation(AndroidDependencies.accompanistPager)
-     implementation(AndroidDependencies.accompanistInsets)
-     implementation(AndroidDependencies.accompanistAnimation)
-     implementation(AndroidDependencies.accompanistSystemUIController)
-     implementation(AndroidDependencies.accompanistMaterialPlaceHolder)
-     implementation(AndroidDependencies.accompanistPagerIndicator)*/
-
-    implementation(AndroidDependencies.lifecycleLiveData)
-    implementation(AndroidDependencies.lifecycleRuntime)
+    implementation(libs.lifecycle.runtime)
 
     // Koin-Dependency injection
-    implementation(AndroidDependencies.koinAndroid)
-    implementation(AndroidDependencies.koinCompose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     // Compose Navigation-Navigation between various screens
-    implementation(AndroidDependencies.composeNavigation)
+    implementation(libs.navigation.compose)
 
-    /**
-     * Coil-Image Loader
-     *
-     implementation(AndroidDependencies.coil)*/
+    testImplementation(libs.jUnitKtx)
+    testImplementation(libs.kotlinX.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.archTestCore)
+    testImplementation(libs.robolectric)
 
-    testImplementation(AndroidDependencies.jUnit)
-    testImplementation(AndroidDependencies.googleTruth)
-    testImplementation(AndroidDependencies.coroutinesTest)
-
-    androidTestImplementation(AndroidDependencies.testRules)
-    androidTestImplementation(AndroidDependencies.testRunner)
+    androidTestImplementation(libs.test.rules)
+    androidTestImplementation(libs.test.runner)
 }

@@ -1,13 +1,13 @@
 plugins {
-    kotlin(Plugins.jvm)
-    id(Plugins.compose) version Versions.composeDesktop
+    /*kotlin(Plugins.jvm)
+    id(Plugins.compose) version Versions.composeDesktop*/
 
-    // alias(libs.plugins.jvm)
-    // alias(libs.plugins.compose.desktop.plugin)
+    alias(libs.plugins.jvm)
+    alias(libs.plugins.compose.desktop.plugin)
 }
 
 dependencies {
-    implementation(project(BuildModules.shared))
+    implementation(project(":shared"))
 
     implementation(compose.desktop.currentOs)
 }
