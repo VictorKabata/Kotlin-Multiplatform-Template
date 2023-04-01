@@ -11,7 +11,13 @@ plugins {
     alias(libs.plugins.gradleVersionUpdates)
 }
 
-subprojects {
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
+
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     ktlint {
         debug.set(true)
@@ -20,11 +26,14 @@ subprojects {
         outputToConsole.set(true)
         outputColorName.set("RED")
         filter {
-            exclude("**/generated/**")
+            enableExperimentalRules.set(true)
+            exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
             include("**/kotlin/**")
         }
     }
+}
 
+subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
         parallel = true

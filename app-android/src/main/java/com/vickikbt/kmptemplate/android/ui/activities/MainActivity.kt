@@ -10,7 +10,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.vickikbt.kmptemplate.android.ui.composable_screens.MainScreen
+import com.vickikbt.kmptemplate.android.ui.screens.MainScreen
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
@@ -20,7 +20,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

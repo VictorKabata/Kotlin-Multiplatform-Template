@@ -55,7 +55,6 @@ kotlin {
 
         sourceSets["commonTest"].dependencies {
             implementation(libs.kotlin.test)
-            // implementation(kotlin("test"))
         }
 
         sourceSets["androidMain"].dependencies {
@@ -81,9 +80,9 @@ kotlin {
     }
 }
 
-/*sqldelight {
+sqldelight {
     database(name = "AppDatabase") {
         packageName = "com.vickikbt.kmptemplate.data.cache.sqldelight"
         sourceFolders = listOf("kotlin")
     }
-}*/
+}
