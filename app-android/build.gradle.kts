@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk = AndroidSdk.compileSdkVersion
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = AndroidSdk.applicationId
-        minSdk = AndroidSdk.minSdkVersion
-        targetSdk = AndroidSdk.targetSdkVersion
-        versionCode = AndroidSdk.versionCode
-        versionName = AndroidSdk.versionName
+        applicationId = "com.company.kmp_template.android"
+        minSdk = 21
+        targetSdk = 33
+        versionCode = 1
+        versionName = "1.0.0"
     }
     buildTypes {
         getByName("release") {
