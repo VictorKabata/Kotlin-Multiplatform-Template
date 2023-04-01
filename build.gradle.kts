@@ -33,7 +33,8 @@ subprojects {
 
     tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
         checkForGradleUpdate = true
-        outputDir = "build/dependencyUpdates"
+        outputFormatter = "html"
+        outputDir = "build/reports/dependencyUpdates"
         reportfileName = "report"
     }
 }
