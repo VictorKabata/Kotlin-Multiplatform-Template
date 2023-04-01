@@ -1,6 +1,4 @@
 [versions]
-minSdk="21"
-
 kotlin = "1.8.0"
 gradle = "7.4.2"
 ktLint = "10.3.0"
