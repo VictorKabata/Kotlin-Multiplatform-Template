@@ -1,11 +1,9 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinX.serialization.plugin)
     alias(libs.plugins.sqlDelight.plugin)
-    // alias(libs.plugins.nativeCocoapod)
+    alias(libs.plugins.nativeCocoapod)
 }
 
 android {
@@ -17,18 +15,32 @@ android {
     }
 }
 
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    targetHierarchy.default()
+
     android()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        when {
-            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-            else -> ::iosX64
-        }
-    iosTarget("iOS") {}
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     jvm()
+
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../app-ios/Podfile")
+        framework {
+            baseName = "shared"
+            isStatic = true
+        }
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+    }
+
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
@@ -64,11 +76,11 @@ kotlin {
         sourceSets["androidUnitTest"].dependencies {
         }
 
-        sourceSets["iOSMain"].dependencies {
+        sourceSets["iosMain"].dependencies {
             implementation(libs.sqlDelight.native)
         }
 
-        sourceSets["iOSTest"].dependencies {
+        sourceSets["iosTest"].dependencies {
         }
 
         sourceSets["jvmMain"].dependencies {
