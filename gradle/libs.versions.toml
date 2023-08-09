@@ -11,6 +11,7 @@ firebasePerformance = "1.4.2"
 
 # Kotlin Multiplatform Version
 kotlinxCoroutines = "1.6.4"
+composeMultiplatform="1.5.0-beta01"
 koinCore = "3.4.0"
 koinAndroid = "3.4.0"
 koinCompose = "3.4.3"
@@ -75,7 +76,8 @@ android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
 android-application = { id = "com.android.application", version.ref = "gradle" }
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-compose-desktop-plugin = { id = "org.jetbrains.compose", version.ref = "composeDesktop" }
+compose = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+compose-desktop-plugin = { id = "org.jetbrains.compose", version.ref = "composeDesktop" } # ToDo: Remove this
 kotlinX-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kmp-NativeCoroutines-plugin = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
 sqlDelight-plugin = { id = "com.squareup.sqldelight", version.ref = "sqlDelight" }
