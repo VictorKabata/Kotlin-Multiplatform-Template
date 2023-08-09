@@ -61,7 +61,7 @@ kotlin {
             implementation(libs.sqlDelight.android)
         }
 
-        sourceSets["androidTest"].dependencies {
+        sourceSets["androidUnitTest"].dependencies {
         }
 
         sourceSets["iOSMain"].dependencies {
