@@ -1,7 +1,7 @@
-package com.vickikbt.kmptemplate.android
+package com.vickikbt.kmptemplate
 
 import android.app.Application
-import com.vickikbt.kmptemplate.android.di.androidModule
+import com.vickikbt.kmptemplate.di.androidModule
 import com.vickikbt.kmptemplate.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -13,7 +13,7 @@ class AndroidApplication : Application() {
 
         val androidModules = listOf(androidModule)
         initKoin {
-            androidLogger(level = if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
+            androidLogger(level = Level.NONE)
             androidContext(androidContext = this@AndroidApplication)
             modules(androidModules)
         }

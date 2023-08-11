@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.android.ui.screens
+package com.vickikbt.kmptemplate.ui.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

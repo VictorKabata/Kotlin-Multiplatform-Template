@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.android.di
+package com.vickikbt.kmptemplate.di
 
 import org.koin.dsl.module
 

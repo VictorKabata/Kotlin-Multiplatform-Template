@@ -1,25 +1,32 @@
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinX.serialization.plugin)
-    alias(libs.plugins.sqlDelight.plugin)
     alias(libs.plugins.nativeCocoapod)
+    alias(libs.plugins.compose)
 }
 
 android {
-    compileSdk = 33
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    compileSdk = 34
     defaultConfig {
         minSdk = 21
-        targetSdk = compileSdk
     }
+    namespace = "com.company.kmp_template.android"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
-kotlin {
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class) kotlin {
     targetHierarchy.default()
 
-    android()
+    androidTarget {
+        jvmToolchain(8)
+    }
 
     iosX64()
     iosArm64()
@@ -41,28 +48,17 @@ kotlin {
             "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
-
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            api(libs.koin.core)
+            implementation(libs.kotlinX.coroutines)
+            api(libs.koin.core) // Dependency injection
+            api(libs.napier) // Logging
 
-            api(libs.ktor.core)
-            api(libs.ktor.cio)
-            implementation(libs.ktor.contentNegotiation)
-            implementation(libs.ktor.json)
-            implementation(libs.ktor.logging)
-
-            implementation(libs.kotlinX.serializationJson)
-
-            implementation(libs.sqlDelight.runtime)
-            implementation(libs.sqlDelight.coroutine)
-
-            implementation(libs.multiplatformSettings.noArg)
-            implementation(libs.multiplatformSettings.coroutines)
-
-            api(libs.napier)
-
-            implementation(libs.kotlinX.dateTime)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material3)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            api(compose.components.resources)
         }
 
         sourceSets["commonTest"].dependencies {
@@ -73,28 +69,18 @@ kotlin {
             implementation(libs.sqlDelight.android)
         }
 
-        sourceSets["androidUnitTest"].dependencies {
-        }
+        sourceSets["androidUnitTest"].dependencies {}
 
         sourceSets["iosMain"].dependencies {
             implementation(libs.sqlDelight.native)
         }
 
-        sourceSets["iosTest"].dependencies {
-        }
+        sourceSets["iosTest"].dependencies {}
 
         sourceSets["jvmMain"].dependencies {
             implementation(libs.sqlDelight.jvm)
         }
 
-        sourceSets["jvmTest"].dependencies {
-        }
-    }
-}
-
-sqldelight {
-    database(name = "AppDatabase") {
-        packageName = "com.vickikbt.kmptemplate.data.cache.sqldelight"
-        sourceFolders = listOf("kotlin")
+        sourceSets["jvmTest"].dependencies {}
     }
 }

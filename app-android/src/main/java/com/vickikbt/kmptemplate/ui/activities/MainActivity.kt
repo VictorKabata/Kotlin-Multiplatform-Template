@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.android.ui.activities
+package com.vickikbt.kmptemplate.ui.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.vickikbt.kmptemplate.android.ui.screens.MainScreen
+import com.vickikbt.kmptemplate.ui.screens.MainScreen
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
