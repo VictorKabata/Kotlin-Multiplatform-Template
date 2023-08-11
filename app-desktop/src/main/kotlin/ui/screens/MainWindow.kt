@@ -1,23 +1,16 @@
 package ui.screens
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
-import com.vickikbt.kmptemplate.presentation.viewmodels.MainViewModel
-import koin
+import com.vickikbt.kmptemplate.ui.screens.MainScreen
 
 @Composable
-fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = koin.get()) {
-    val greeting = viewModel.greeting.collectAsState().value
+fun MainWindow(applicationScope: ApplicationScope) {
 
     Window(
         onCloseRequest = { applicationScope.exitApplication() },
@@ -28,10 +21,6 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
             height = 400.dp, // or Dp.Unspecified,
         )
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            greeting?.let {
-                Text(modifier = Modifier.align(Alignment.Center), text = it)
-            }
-        }
+        MainScreen()
     }
 }
