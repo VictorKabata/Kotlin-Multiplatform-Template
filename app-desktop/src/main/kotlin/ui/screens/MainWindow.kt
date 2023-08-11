@@ -11,7 +11,6 @@ import com.vickikbt.kmptemplate.ui.screens.MainScreen
 
 @Composable
 fun MainWindow(applicationScope: ApplicationScope) {
-
     Window(
         onCloseRequest = { applicationScope.exitApplication() },
         title = "KMP Template",
