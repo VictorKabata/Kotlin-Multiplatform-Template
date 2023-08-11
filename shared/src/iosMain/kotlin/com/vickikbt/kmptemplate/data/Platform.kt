@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.domain.utils
+package com.vickikbt.kmptemplate.data
 
 import platform.UIKit.UIDevice
 

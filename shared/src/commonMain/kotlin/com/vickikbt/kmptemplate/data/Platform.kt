@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.domain.utils
+package com.vickikbt.kmptemplate.data
 
 expect class Platform() {
     val platform: String
