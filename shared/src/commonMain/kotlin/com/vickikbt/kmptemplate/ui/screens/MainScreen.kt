@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.vickikbt.kmptemplate.data.Platform
 import com.vickikbt.kmptemplate.ui.theme.AppTheme
-import com.vickikbt.kmptemplate.ui.theme.TextPrimary
 
 @Composable
 fun MainScreen() {
@@ -27,7 +26,7 @@ fun MainScreen() {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = greeting,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
