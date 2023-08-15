@@ -1,56 +1,47 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinX.serialization.plugin)
-    alias(libs.plugins.sqlDelight.plugin)
-    // alias(libs.plugins.nativeCocoapod)
+    alias(libs.plugins.nativeCocoapod)
+    alias(libs.plugins.compose)
 }
 
-android {
-    compileSdk = 33
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 21
-        targetSdk = compileSdk
-    }
-}
-
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    android()
+    targetHierarchy.default()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        when {
-            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
-            else -> ::iosX64
-        }
-    iosTarget("iOS") {}
+    androidTarget()
+
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     jvm()
 
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../app-ios/Podfile")
+        framework {
+            baseName = "shared"
+            isStatic = true
+        }
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+    }
+
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            api(libs.koin.core)
+            implementation(libs.kotlinX.coroutines)
+            api(libs.koin.core) // Dependency injection
+            api(libs.napier) // Logging
 
-            api(libs.ktor.core)
-            api(libs.ktor.cio)
-            implementation(libs.ktor.contentNegotiation)
-            implementation(libs.ktor.json)
-            implementation(libs.ktor.logging)
-
-            implementation(libs.kotlinX.serializationJson)
-
-            implementation(libs.sqlDelight.runtime)
-            implementation(libs.sqlDelight.coroutine)
-
-            implementation(libs.multiplatformSettings.noArg)
-            implementation(libs.multiplatformSettings.coroutines)
-
-            api(libs.napier)
-
-            implementation(libs.kotlinX.dateTime)
+            api(compose.runtime)
+            api(compose.foundation)
+            api(compose.material3)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            api(compose.components.resources)
         }
 
         sourceSets["commonTest"].dependencies {
@@ -58,31 +49,41 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-            implementation(libs.sqlDelight.android)
+            api(libs.androidX.core)
+            api(libs.appCompat)
+            api(libs.compose.activity)
         }
 
-        sourceSets["androidTest"].dependencies {
+        sourceSets["androidUnitTest"].dependencies {}
+
+        sourceSets["iosMain"].dependencies {
         }
 
-        sourceSets["iOSMain"].dependencies {
-            implementation(libs.sqlDelight.native)
-        }
-
-        sourceSets["iOSTest"].dependencies {
-        }
+        sourceSets["iosTest"].dependencies {}
 
         sourceSets["jvmMain"].dependencies {
-            implementation(libs.sqlDelight.jvm)
         }
 
-        sourceSets["jvmTest"].dependencies {
-        }
+        sourceSets["jvmTest"].dependencies {}
     }
 }
 
-sqldelight {
-    database(name = "AppDatabase") {
-        packageName = "com.vickikbt.kmptemplate.data.cache.sqldelight"
-        sourceFolders = listOf("kotlin")
+android {
+    compileSdk = 34
+    namespace = "com.company.kmp_template.android"
+
+    defaultConfig {
+        minSdk = 21
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlin {
+        jvmToolchain(11)
+    }
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }

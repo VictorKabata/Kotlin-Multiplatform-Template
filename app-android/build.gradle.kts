@@ -4,15 +4,17 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
+    namespace = "com.vickikbt.kmp_template"
 
     defaultConfig {
-        applicationId = "com.company.kmp_template.android"
+        applicationId = "com.vickikbt.kmp_template"
         minSdk = 21
         targetSdk = compileSdk
         versionCode = 1
         versionName = "1.0.0"
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -20,12 +22,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlin {
+        jvmToolchain(11)
     }
 
     buildFeatures {
@@ -33,41 +35,10 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 
 dependencies {
-    api(project(":shared"))
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.androidX.core)
-
-    implementation(libs.material)
-
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.tooling)
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.util)
-    implementation(libs.compose.activity)
-
-    implementation(libs.lifecycle.runtime)
-
-    // Koin-Dependency injection
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-
-    // Compose Navigation-Navigation between various screens
-    implementation(libs.navigation.compose)
-
-    testImplementation(libs.jUnitKtx)
-    testImplementation(libs.kotlinX.coroutines.test)
-    testImplementation(libs.mockk)
-    testImplementation(libs.kotlin.test)
-    testImplementation(libs.archTestCore)
-    testImplementation(libs.robolectric)
-
-    androidTestImplementation(libs.test.rules)
-    androidTestImplementation(libs.test.runner)
+    implementation(project(":shared"))
 }

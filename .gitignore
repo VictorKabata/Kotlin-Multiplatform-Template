@@ -9,3 +9,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+app-ios/Pods
+/iosApp.xcodeproj
+*.plist
