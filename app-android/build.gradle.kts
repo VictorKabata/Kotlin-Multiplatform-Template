@@ -55,20 +55,7 @@ dependencies {
 
     implementation(libs.lifecycle.runtime)
 
-    // Koin-Dependency injection
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-
     // Compose Navigation-Navigation between various screens
     implementation(libs.navigation.compose)
 
-    testImplementation(libs.jUnitKtx)
-    testImplementation(libs.kotlinX.coroutines.test)
-    testImplementation(libs.mockk)
-    testImplementation(libs.kotlin.test)
-    testImplementation(libs.archTestCore)
-    testImplementation(libs.robolectric)
-
-    androidTestImplementation(libs.test.rules)
-    androidTestImplementation(libs.test.runner)
 }
