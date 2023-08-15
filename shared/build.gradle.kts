@@ -67,19 +67,16 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-            implementation(libs.sqlDelight.android)
         }
 
         sourceSets["androidUnitTest"].dependencies {}
 
         sourceSets["iosMain"].dependencies {
-            implementation(libs.sqlDelight.native)
         }
 
         sourceSets["iosTest"].dependencies {}
 
         sourceSets["jvmMain"].dependencies {
-            implementation(libs.sqlDelight.jvm)
         }
 
         sourceSets["jvmTest"].dependencies {}
