@@ -14,6 +14,7 @@ android {
         versionCode = 1
         versionName = "1.0.0"
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -21,12 +22,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlin {
+        jvmToolchain(11)
     }
 
     buildFeatures {
@@ -39,23 +40,5 @@ android {
 }
 
 dependencies {
-    api(project(":shared"))
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.androidX.core)
-
-    implementation(libs.material)
-
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
-    implementation(libs.compose.tooling)
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.util)
-    implementation(libs.compose.activity)
-
-    implementation(libs.lifecycle.runtime)
-
-    // Compose Navigation-Navigation between various screens
-    implementation(libs.navigation.compose)
-
+    implementation(project(":shared"))
 }

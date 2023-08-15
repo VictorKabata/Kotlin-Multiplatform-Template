@@ -5,29 +5,11 @@ plugins {
     alias(libs.plugins.compose)
 }
 
-android {
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
-    }
-    namespace = "com.company.kmp_template.android"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
-}
-
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
 
-    androidTarget {
-        jvmToolchain(8)
-    }
+    androidTarget()
 
     iosX64()
     iosArm64()
@@ -67,6 +49,9 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
+            api(libs.androidX.core)
+            api(libs.appCompat)
+            api(libs.compose.activity)
         }
 
         sourceSets["androidUnitTest"].dependencies {}
@@ -81,4 +66,24 @@ kotlin {
 
         sourceSets["jvmTest"].dependencies {}
     }
+}
+
+android {
+    compileSdk = 34
+    namespace = "com.company.kmp_template.android"
+
+    defaultConfig {
+        minSdk = 21
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlin {
+        jvmToolchain(11)
+    }
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
