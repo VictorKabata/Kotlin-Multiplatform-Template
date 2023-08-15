@@ -21,7 +21,6 @@ fun MainScreen() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-
             Box(modifier = Modifier.fillMaxSize()) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
@@ -29,7 +28,6 @@ fun MainScreen() {
                     color = MaterialTheme.colorScheme.onSurface
                 )
             }
-
         }
     }
 }

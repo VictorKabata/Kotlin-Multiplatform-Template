@@ -21,7 +21,8 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class) kotlin {
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+kotlin {
     targetHierarchy.default()
 
     androidTarget {

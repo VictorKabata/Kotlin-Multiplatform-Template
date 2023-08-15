@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.nativeCocoapod) apply false
 
-    alias(libs.plugins.ktLint)
+    // alias(libs.plugins.ktLint) ToDo
     alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionUpdates)
 }
@@ -17,20 +17,6 @@ allprojects {
         google()
         mavenCentral()
         maven(url = "https://jitpack.io")
-    }
-
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
-    ktlint {
-        debug.set(true)
-        verbose.set(true)
-        android.set(false)
-        outputToConsole.set(true)
-        outputColorName.set("RED")
-        filter {
-            enableExperimentalRules.set(true)
-            exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
-            include("**/kotlin/**")
-        }
     }
 }
 
