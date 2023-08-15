@@ -1,3 +1,5 @@
+rootProject.name = "KMP_Template"
+
 pluginManagement {
     repositories {
         google()
@@ -7,7 +9,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "KMP_Template"
 include(":app-android")
 include(":app-desktop")
 include(":shared")

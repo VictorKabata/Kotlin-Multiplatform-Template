@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.nativeCocoapod) apply false
 
-    // alias(libs.plugins.ktLint) ToDo
+    alias(libs.plugins.ktLint) // ToDo: Add ktLint to all sub-projects
     alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionUpdates)
 }

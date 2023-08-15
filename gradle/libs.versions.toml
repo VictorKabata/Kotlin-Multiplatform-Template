@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.9.0"
 gradle = "8.0.2"
-ktLint = "10.3.0"
+ktLint = "11.5.1"
 detekt = "1.19.0"
 gradleVersionUpdate = "0.46.0"
 googleServices = "4.3.14"
