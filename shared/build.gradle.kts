@@ -9,7 +9,7 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    androidTarget()
+    android()
 
     iosX64()
     iosArm64()
@@ -27,8 +27,6 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        extraSpecAttributes["resources"] =
-            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
@@ -54,7 +52,7 @@ kotlin {
             api(libs.compose.activity)
         }
 
-        sourceSets["androidUnitTest"].dependencies {}
+        sourceSets["androidTest"].dependencies {}
 
         sourceSets["iosMain"].dependencies {
         }
