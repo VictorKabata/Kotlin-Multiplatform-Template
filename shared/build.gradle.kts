@@ -60,6 +60,7 @@ kotlin {
         sourceSets["iosTest"].dependencies {}
 
         sourceSets["jvmMain"].dependencies {
+            api(compose.desktop.currentOs)
         }
 
         sourceSets["jvmTest"].dependencies {}

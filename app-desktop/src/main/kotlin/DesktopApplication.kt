@@ -1,5 +1,5 @@
 import androidx.compose.ui.window.application
-import ui.screens.MainWindow
+import screens.MainWindow
 
 fun main() {
     return application {
