@@ -5,10 +5,10 @@ plugins {
 
 android {
     compileSdk = 33
-    namespace = "com.vickikbt.kmp_template"
+    namespace = "com.company.kmp_template"
 
     defaultConfig {
-        applicationId = "com.vickikbt.kmp_template"
+        applicationId = "com.company.kmp_template"
         minSdk = 21
         targetSdk = compileSdk
         versionCode = 1

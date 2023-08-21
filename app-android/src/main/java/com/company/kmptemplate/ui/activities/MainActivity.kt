@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate.ui.activities
+package com.company.kmptemplate.ui.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
