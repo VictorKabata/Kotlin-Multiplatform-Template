@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.8.20"
-agp = "8.1.0"
+agp = "8.0.2"
 ktLint = "11.5.1"
 detekt = "1.19.0"
 gradleVersionUpdate = "0.46.0"
