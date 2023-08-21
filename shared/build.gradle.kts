@@ -67,7 +67,7 @@ kotlin {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 33
     namespace = "com.company.kmp_template.android"
 
     defaultConfig {
