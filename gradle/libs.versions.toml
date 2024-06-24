@@ -1,21 +1,17 @@
 [versions]
-kotlin = "1.8.20"
+kotlin = "2.0.0"
 agp = "8.0.2"
 ktLint = "11.5.1"
 detekt = "1.19.0"
 gradleVersionUpdate = "0.51.0"
 
 # Kotlin Multiplatform Version
-composeMultiplatform = "1.5.0-beta01"
+composeMultiplatform = "1.6.11"
 koinCore = "3.4.2"
-koinAndroid = "3.4.0"
-koinCompose = "3.4.5"
 napier = "2.6.1"
 kover = "0.6.1"
 
 #Android Versions
-
-androidxCore = "1.10.1"
 appCompat = "1.6.1"
 composeActivity = "1.7.2"
 
@@ -25,11 +21,12 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gradleVersionUpdates = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionUpdate" }
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 nativeCocoapod = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
-android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [libraries]
 #Kotlin Multiplatform Lib Dependencies
@@ -37,10 +34,6 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 #Android Lib Dependencies
-androidX-core = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
-
+appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 

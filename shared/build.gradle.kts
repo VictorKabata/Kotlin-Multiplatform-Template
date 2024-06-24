@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.nativeCocoapod)
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -45,12 +46,13 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-            api(libs.androidX.core)
+             api(libs.compose.activity)
             api(libs.appCompat)
-            api(libs.compose.activity)
         }
 
-        sourceSets["androidTest"].dependencies {}
+        sourceSets["androidUnitTest"].dependencies {}
+
+        sourceSets["androidInstrumentedTest"].dependencies {}
 
         sourceSets["iosMain"].dependencies {
         }
@@ -66,7 +68,7 @@ kotlin {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.company.kmp_template.android"
 
     defaultConfig {

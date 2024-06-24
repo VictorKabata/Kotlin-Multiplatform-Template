@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.company.kmp_template"
 
     defaultConfig {
@@ -28,14 +29,6 @@ android {
 
     kotlin {
         jvmToolchain(11)
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.5"
     }
 }
 
