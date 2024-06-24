@@ -31,7 +31,6 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            implementation(libs.kotlinX.coroutines)
             api(libs.koin.core) // Dependency injection
             api(libs.napier) // Logging
 
@@ -43,7 +42,6 @@ kotlin {
         }
 
         sourceSets["commonTest"].dependencies {
-            implementation(libs.kotlin.test)
         }
 
         sourceSets["androidMain"].dependencies {
