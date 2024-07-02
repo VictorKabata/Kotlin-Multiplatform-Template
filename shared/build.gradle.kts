@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
@@ -10,7 +12,11 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    android()
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     iosX64()
     iosArm64()
@@ -46,7 +52,7 @@ kotlin {
         }
 
         sourceSets["androidMain"].dependencies {
-             api(libs.compose.activity)
+            api(libs.compose.activity)
             api(libs.appCompat)
         }
 
