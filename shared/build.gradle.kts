@@ -16,7 +16,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    jvm()
+    jvm("desktop")
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -59,11 +59,11 @@ kotlin {
 
         sourceSets["iosTest"].dependencies {}
 
-        sourceSets["jvmMain"].dependencies {
+        sourceSets["desktopMain"].dependencies {
             api(compose.desktop.currentOs)
         }
 
-        sourceSets["jvmTest"].dependencies {}
+        sourceSets["desktopTest"].dependencies {}
     }
 }
 
