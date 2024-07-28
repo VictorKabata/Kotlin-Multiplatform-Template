@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-dependencies {
-    implementation(project(":shared"))
-}
-
 compose.desktop {
     application {
         mainClass = "DesktopApplicationKt"
@@ -17,4 +13,9 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(compose.desktop.currentOs)
 }
