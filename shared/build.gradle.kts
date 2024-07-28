@@ -1,5 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -19,16 +20,13 @@ kotlin {
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "KMP Template iOS"
-            isStatic = true
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        when {
+            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+            else -> ::iosX64
         }
-    }
+    iosTarget("ios") {}
 
     jvm("desktop")
 
@@ -40,28 +38,33 @@ kotlin {
         podfile = project.file("../app-ios/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
         }
     }
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            api(libs.koin.core) // Dependency injection
-            api(libs.napier) // Logging
-
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
-            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             api(compose.components.resources)
+
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeViewModel)
+
+            api(libs.napier)
+
+            implementation(libs.coroutines)
+
+            implementation(libs.bundles.ktor)
         }
 
         sourceSets["commonTest"].dependencies {
         }
 
         sourceSets["androidMain"].dependencies {
-            api(libs.compose.activity)
-            api(libs.appCompat)
+            implementation(libs.ktor.android)
         }
 
         sourceSets["androidUnitTest"].dependencies {}
@@ -69,12 +72,13 @@ kotlin {
         sourceSets["androidInstrumentedTest"].dependencies {}
 
         sourceSets["iosMain"].dependencies {
+            implementation(libs.ktor.darwin)
         }
 
         sourceSets["iosTest"].dependencies {}
 
         sourceSets["desktopMain"].dependencies {
-            api(compose.desktop.currentOs)
+            implementation(libs.ktor.java)
         }
 
         sourceSets["desktopTest"].dependencies {}
