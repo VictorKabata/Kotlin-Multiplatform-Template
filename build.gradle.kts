@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.compose.compiler) apply false
 
-    alias(libs.plugins.ktLint) // ToDo: Add ktLint to all sub-projects
+    alias(libs.plugins.ktLint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionUpdates)
 }
@@ -26,6 +26,20 @@ subprojects {
     detekt {
         parallel = true
         config = files("${project.rootDir}/config/detekt/detekt.yml")
+    }
+
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    ktlint {
+        debug.set(true)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        outputColorName.set("RED")
+        filter {
+            enableExperimentalRules.set(true)
+            exclude { projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/") }
+            include("**/kotlin/**")
+        }
     }
 
     tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
