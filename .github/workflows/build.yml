@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-    name: 🔨 Build
+    name: 🔨 Build & Test
     runs-on: ubuntu-latest
     steps:
 
@@ -25,3 +25,6 @@ jobs:
 
       - name: Build with gradle
         run: ./gradlew build --stacktrace
+
+      - name: Execute unit tests
+        run: ./gradlew check --stacktrace

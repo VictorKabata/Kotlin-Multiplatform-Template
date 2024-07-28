@@ -1,10 +1,7 @@
 plugins {
-    alias(libs.plugins.jvm)
+    alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.compose)
-}
-
-dependencies {
-    implementation(project(":shared"))
+    alias(libs.plugins.compose.compiler)
 }
 
 compose.desktop {
@@ -16,4 +13,9 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(compose.desktop.currentOs)
 }
