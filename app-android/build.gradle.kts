@@ -17,8 +17,12 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        debug {
             isMinifyEnabled = false
+        }
+
+        release {
+            isMinifyEnabled = true
         }
     }
 
@@ -34,4 +38,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(libs.compose.activity)
+    implementation(libs.appCompat)
+    implementation(libs.koin.android)
 }
