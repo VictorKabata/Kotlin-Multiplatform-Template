@@ -1,4 +1,4 @@
-package com.vickikbt.kmptemplate
+package com.company.kmptemplate
 
 import android.app.Application
 

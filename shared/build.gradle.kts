@@ -1,21 +1,34 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.nativeCocoapod)
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
 
-    androidTarget()
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        when {
+            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+            else -> ::iosX64
+        }
+    iosTarget("ios") {}
 
-    jvm()
+    jvm("desktop")
 
     cocoapods {
         summary = "Some description for the Shared Module"
@@ -25,46 +38,50 @@ kotlin {
         podfile = project.file("../app-ios/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
         }
-        extraSpecAttributes["resources"] =
-            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-            implementation(libs.kotlinX.coroutines)
-            api(libs.koin.core) // Dependency injection
-            api(libs.napier) // Logging
-
             api(compose.runtime)
             api(compose.foundation)
             api(compose.material3)
-            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
             api(compose.components.resources)
+
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeViewModel)
+
+            api(libs.napier)
+
+            implementation(libs.coroutines)
+
+            implementation(libs.bundles.ktor)
         }
 
         sourceSets["commonTest"].dependencies {
-            implementation(libs.kotlin.test)
         }
 
         sourceSets["androidMain"].dependencies {
-            api(libs.androidX.core)
-            api(libs.appCompat)
-            api(libs.compose.activity)
+            implementation(libs.ktor.android)
         }
 
         sourceSets["androidUnitTest"].dependencies {}
 
+        sourceSets["androidInstrumentedTest"].dependencies {}
+
         sourceSets["iosMain"].dependencies {
+            implementation(libs.ktor.darwin)
         }
 
         sourceSets["iosTest"].dependencies {}
 
-        sourceSets["jvmMain"].dependencies {
+        sourceSets["desktopMain"].dependencies {
+            implementation(libs.ktor.java)
         }
 
-        sourceSets["jvmTest"].dependencies {}
+        sourceSets["desktopTest"].dependencies {}
     }
 }
 
@@ -80,10 +97,24 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlin {
         jvmToolchain(11)
     }
+
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+}
+
+compose.desktop {
+    application {
+        mainClass = "DesktopApplicationKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "org.example.project"
+            packageVersion = "1.0.0"
+        }
+    }
 }

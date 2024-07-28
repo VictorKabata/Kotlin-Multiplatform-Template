@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     compileSdk = 34
-    namespace = "com.vickikbt.kmp_template"
+    namespace = "com.company.kmp_template"
 
     defaultConfig {
-        applicationId = "com.vickikbt.kmp_template"
+        applicationId = "com.company.kmp_template"
         minSdk = 21
         targetSdk = compileSdk
         versionCode = 1
@@ -16,8 +17,12 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        debug {
             isMinifyEnabled = false
+        }
+
+        release {
+            isMinifyEnabled = true
         }
     }
 
@@ -29,16 +34,11 @@ android {
     kotlin {
         jvmToolchain(11)
     }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 }
 
 dependencies {
     implementation(project(":shared"))
+    implementation(libs.compose.activity)
+    implementation(libs.appCompat)
+    implementation(libs.koin.android)
 }

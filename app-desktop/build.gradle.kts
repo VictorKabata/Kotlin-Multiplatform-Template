@@ -1,23 +1,21 @@
 plugins {
-    alias(libs.plugins.jvm)
-    // alias(libs.plugins.compose.desktop.plugin)
+    alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.compose)
-}
-
-dependencies {
-    implementation(project(":shared"))
-
-    implementation(compose.desktop.currentOs)
-
-    testImplementation(libs.kotlin.test)
-    testImplementation(libs.turbine)
-    testImplementation(libs.ktor.mock)
-    testImplementation(libs.mockk)
-    testImplementation(libs.kotlinX.coroutines.test)
+    alias(libs.plugins.compose.compiler)
 }
 
 compose.desktop {
     application {
         mainClass = "DesktopApplicationKt"
+
+        nativeDistributions {
+            packageName = "KMP Template Desktop"
+            packageVersion = "1.0.0"
+        }
     }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation(compose.desktop.currentOs)
 }

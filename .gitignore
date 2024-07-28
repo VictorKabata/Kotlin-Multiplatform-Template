@@ -12,3 +12,4 @@ local.properties
 app-ios/Pods
 /iosApp.xcodeproj
 *.plist
+.kotlin

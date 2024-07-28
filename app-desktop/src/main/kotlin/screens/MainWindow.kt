@@ -1,4 +1,4 @@
-package ui.screens
+package screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,11 +13,11 @@ import com.vickikbt.kmptemplate.ui.screens.MainScreen
 fun MainWindow(applicationScope: ApplicationScope) {
     Window(
         onCloseRequest = { applicationScope.exitApplication() },
-        title = "KMP Template",
+        title = "KMP Template Desktop",
         state = rememberWindowState(
             position = WindowPosition.Aligned(Alignment.Center),
-            width = 400.dp, // or Dp.Unspecified,
-            height = 400.dp, // or Dp.Unspecified,
+            width = 800.dp, // or Dp.Unspecified,
+            height = 640.dp, // or Dp.Unspecified,
         )
     ) {
         MainScreen()
